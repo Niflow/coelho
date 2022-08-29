@@ -9,6 +9,14 @@ const Composto = Matter.Composite;
 
 var motorDeFisica, mundo;
 var chao, corda, fruta, conexaoFruta;
+var imgFundo, imgCoelho, imgFruta;
+
+function preload()
+{
+  imgFundo = loadImage("background.png");
+  imgCoelho = loadImage("rabbit_eating.png");
+  imgFruta = loadImage("melon.png");
+}
 
 function setup() 
 {
@@ -27,20 +35,19 @@ function setup()
   
   conexaoFruta = new Conexao(corda, fruta);
 
-  console.log(Corda);
-
   rectMode(CENTER);
   ellipseMode(RADIUS);
   textSize(50)
+  imageMode(CENTER);
 }
 
 function draw() 
 {
-  background(51);
+  image(imgFundo, width/2, height/2, 500,700);
   MotorFisica.update(motorDeFisica);
   
 
   chao.mostrar();
   corda.show();
-  ellipse(fruta.position.x,fruta.position.y,15,15);
+  image(imgFruta, fruta.position.x,fruta.position.y,60,60);
 }
