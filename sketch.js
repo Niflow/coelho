@@ -9,7 +9,8 @@ const Composto = Matter.Composite;
 
 var motorDeFisica, mundo;
 var chao, corda, fruta, conexaoFruta;
-var imgFundo, imgCoelho, imgFruta;
+var imgFundo, imgCoelho, imgFruta,coelho;
+var tesoura;
 
 function preload()
 {
@@ -34,6 +35,15 @@ function setup()
   Composto.add(corda.body,fruta);
   
   conexaoFruta = new Conexao(corda, fruta);
+  coelho=createSprite(250,650,100,100);
+  coelho.addImage(imgCoelho);
+  coelho.scale=0.2;
+
+  tesoura=createImg('cut_btn.png');
+  tesoura.size(50,50);
+  tesoura.position(220,30);
+  tesoura.mouseClicked(soltar);
+  
 
   rectMode(CENTER);
   ellipseMode(RADIUS);
@@ -50,4 +60,11 @@ function draw()
   chao.mostrar();
   corda.show();
   image(imgFruta, fruta.position.x,fruta.position.y,60,60);
+  drawSprites();
+}
+function soltar(){
+  corda.break();
+  conexaoFruta.cortar();
+  conexaoFruta=null;
+
 }

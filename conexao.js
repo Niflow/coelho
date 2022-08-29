@@ -21,4 +21,10 @@ class Conexao {
 
         Mundo.add(mundo, this.conexao);
     }
+
+
+    cortar()
+    {
+        Mundo.remove(mundo,this.conexao);
+    }
 }
